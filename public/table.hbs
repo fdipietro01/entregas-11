@@ -1,0 +1,23 @@
+<div class="container rounded mt-1">
+    {{#if sinProductos}}
+    <div class="alert alert-danger"> No hay productos en el inventario </div>
+    
+    {{else}}
+    <table class="rounded table table-info table-striped table bordered text-center">
+        <thead class=" rounded text-white">
+            <th class="bg-info"><h4>Item</h4></th>
+            <th class="bg-info"><h4>Precio<h4></th>
+            <th class="bg-info"><h4>Imagen<h4></th>
+        </thead>
+    <tbody>
+    {{#each productos}}
+    <tr scope="row">
+        <td>{{title}}</td>
+        <td>${{price}}</td>
+        <td><img src={{thumbnails}}/></td>
+    </tr>   
+    {{/each}}
+    </tbody> 
+    </table>
+    {{/if}}
+</div>

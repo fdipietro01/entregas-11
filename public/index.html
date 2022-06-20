@@ -1,0 +1,91 @@
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Templates</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+
+<body>
+    <div class="container mt-3 mb-5 p-3 border border-info rounded">
+
+        <p class="navbar navbar-dark bg-info rounded text-white">
+            Product Form
+        </p>
+
+        <form id="formulario" onsubmit="return addProd()">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Type product name">
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text">Price</span>
+                </div>
+                <input type="text" name="price" id="price" class="form-control" placeholder="Type product price ">
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text">Imagen</span>
+                </div>
+                <input type="text" name="img" id="img" class="form-control" placeholder="Set an image file or url ">
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit " class="btn btn-info mx-3">Send Info</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mb-5 p-3 border border-info rounded">  
+        <p class="navbar navbar-dark bg-info rounded text-white" col>
+            Product List
+        </p>  
+        <div id="table"></div>
+    </div>
+
+    <div class="container mt-3 p-3 border border-info rounded">
+        <p class="navbar navbar-dark bg-info rounded text-white" col>
+            Register & Chat
+        </p>
+        <form class="mt-3" onsubmit="return newMail()">
+            <div class="input-group mb-3 d-flex justify-content-center">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Mail</span>
+                </div>
+                <input type="text " name="mail" id="mail" class="form-control " placeholder="Type your email address">
+                <button type="submit " class="btn btn-info mx-3">Register</button>
+            </div>
+            <span id="mailId"></span>
+            <div class="d-flex justify-content-center">
+            </div>
+        </form>
+        <div class="container mt-3 p-3 border border-info rounded">
+
+            <form onsubmit="return setNewMessage()">
+                <div id="chat"></div>
+                <div class="mt-2 d-flex justify-content-center">
+                    <input id="message" type="text " name="mail" id="mail" class="form-control "
+                        placeholder="What are you thinking?">
+                    <button disabled id="message-btn" type="submit " class="btn btn-info ml-2">Send</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
