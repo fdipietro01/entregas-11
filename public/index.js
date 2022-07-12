@@ -1,23 +1,28 @@
 const socket = io();
 let templateCompiler;
 const setTableProducts = (productos) => {
-      let html;
-      if (productos.length === 0) {
-        html = templateCompiler({ productos: productos, sinProductos: true });
-      } else {
-        html = templateCompiler({ productos: productos, sinProductos: false });
-      }
-      document.getElementById("table").innerHTML = html;
+  let html;
+  if (productos.length === 0) {
+    html = templateCompiler({ productos: productos, sinProductos: true });
+  } else {
+    html = templateCompiler({ productos: productos, sinProductos: false });
+  }
+  document.getElementById("table").innerHTML = html;
 };
 
 socket.on("launchApp", ({ products, chatHistory }) => {
+  console.log(products, chatHistory)
   initializingTable(products);
   initializingChat(chatHistory);
 });
 
+socket.on("algo", ()=>{console.log("recibi algo")})
+
 socket.on("updateTable", (productos) => {
-  setTableProducts(productos);
+  console.log("los prodd", productos)// este console no muestra nada en el navegador
 });
+
+socket.on("holaa,", (mensaje) => console.log(mensaje));
 
 socket.on("updateChat", (chatHistory) => initializingChat(chatHistory));
 
@@ -51,7 +56,7 @@ const initializingChat = (chatHistory) => {
     const chat = document.getElementById("chat");
     chat.innerHTML = "";
     chat.removeAttribute("class");
-    chatHistory.forEach(({message}) => {
+    chatHistory.forEach(({ message }) => {
       const doc = document.createElement("p");
       doc.innerHTML = message;
       chat.appendChild(doc);
@@ -59,23 +64,14 @@ const initializingChat = (chatHistory) => {
   }
 };
 
-const addProd = () => {
-  const title = document.getElementById("title").value;
-  const price = document.getElementById("price").value;
-  const img = document.getElementById("img").value;
-  socket.emit("newProduct", {title, price, img});
-  document.getElementById("title").value = "";
-  document.getElementById("price").value = "";
-  document.getElementById("img").value = "";
-  return false
-};
-
 const newMail = () => {
   const mail = document.getElementById("mail").value;
   socket.emit("newMail", mail);
   document.getElementById("mailId").innerHTML = `Logged as ${mail}`;
-  document.getElementById("mailId").classList.add("bg-info", "text-white", "p-1", "rounded");
-  document.getElementById("mail").value= "";
+  document
+    .getElementById("mailId")
+    .classList.add("bg-info", "text-white", "p-1", "rounded");
+  document.getElementById("mail").value = "";
   return false;
 };
 
