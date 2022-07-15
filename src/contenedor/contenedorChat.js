@@ -1,6 +1,8 @@
+import mongo from "mongodb";
 class ContenedorChat {
     constructor() {}
-
+        
+    
     async getChat() {
         const chat = []
         return chat
