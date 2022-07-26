@@ -1,15 +1,21 @@
 <body>
-<div class="container mb-5 p-3 border border-info rounded">  
+    {{#if usuario}}  
+      {{>header}}
+    <div class="container mb-5 p-3 border border-info rounded">
         <p class="navbar navbar-dark bg-info rounded text-white" col>
             Product List
-        </p>  
+        </p>
+
         <div id="table">
             {{>table}}
         </div>
-        
+
     </div>
     <div>
         {{>chat}}
     </div>
     <script src="index.js"></script>
+    {{else}}
+    {{>login}}
+    {{/if}}
 </body>
